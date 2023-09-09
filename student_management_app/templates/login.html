@@ -1,0 +1,245 @@
+
+{% extends 'base.html' %}
+{% load static %} 
+
+{% block content %}
+      <style>
+          body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                background: url('https://images.unsplash.com/photo-1516131206008-dd041a9764fd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80') no-repeat;
+                background-size: cover;
+                background-position: center;
+            }
+          .wrapper{
+                position: relative;
+                width: 400px;
+                height: 440px;
+                border: 2px solid rgba(255, 255, 255, .5);
+                border-radius: 20px;
+                backdrop-filter: blur(20px);
+                box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                overflow: hidden;
+          }
+
+          .wrapper .form-box{
+                width: 100%;
+                padding: 40px;
+          }
+
+          .form-box h2{
+                font-size: 2em;
+                color: #162938;
+                text-align: center;
+          }
+
+          .input-box{
+                position: relative;
+                width: 100%;
+                height: 50px;
+                border-bottom: 1px solid #162938;
+                margin: 30px 0;
+          }
+
+          .input-box label{
+                position: absolute;
+                top: 50%;
+                left: 5px;
+                transform: translateY(-50%);
+                font-size: 1em;
+                color: #162938;
+                font-weight: 500;
+                pointer-events: none;
+                transition: .5s;
+
+          }
+
+             /* ::placeholder{
+                    color: #162938;
+                    font-size: 15px;
+
+                    font-weight: bold;
+            }  */
+
+
+           .input-box input:focus~label,
+           .input-box input:valid~label{
+                top:5px;
+           }
+
+          .input-box input{
+                width: 100%;
+                height: 100%;
+                background: transparent;
+                border: none;
+                outline: none;
+                font-size: 1em;
+                color: #162938;
+                font-weight: 600;
+                padding: 0 35px 0 5px;
+          }
+
+          .input-box .icon{
+                position: absolute;
+                right: 8px;
+                font-size: 1.2em;
+                color: #162938;
+                line-height: 57px;
+          }
+
+          .btn{
+          width: 100%;
+            height: 45px;
+            cursor: pointer;
+            padding: 5px 34px;
+    border-radius: 8px;
+  box-shadow: 0px 0px 12px -2px rgba(0,0,0,0.5);
+  line-height: 1.25;
+  background: #162938;
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  letter-spacing: .08em;
+
+  position: relative;
+  transition: background-color .6s ease;
+  overflow: hidden;
+}
+            &:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: 50%;
+    left: 50%;
+    top: var(--mouse-y);
+    left: var(--mouse-x);
+    transform-style: flat;
+    transform: translate3d(-50%,-50%,0);
+    background: rgba(white,.1);
+    border-radius: 100%;
+    transition: width .3s ease, height;
+            }
+a:link, a:visited{
+color: white;
+padding: 5px 5px;
+  text-align: center;
+  text-decoration: none;
+}
+
+          .wrapper .icon-close{
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 45px;
+                height: 45px;
+                background: #162938;
+                font-size: 2em;
+                color: #fff;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-bottom-left-radius: 20px;
+                cursor: pointer;
+                z-index: 1;
+          }
+
+           .alert {
+            position: fixed;
+            top: 27px;
+            left: 30px;
+            width: 90%;
+            text-align: center;
+            padding: 5px 34px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 12px -2px rgba(0,0,0,0.5);
+            line-height: 1.25;
+            background: #162938;
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+            letter-spacing: .08em;
+          }
+          .login-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+ .logo {
+    max-width: 100px;
+    margin-bottom: 20px;
+    background-size: cover;
+  border-radius: 50%;
+} 
+
+         
+
+      </style>
+
+  </head>
+  <body>
+        </div>
+        {% comment %} {% endfor %} {% endcomment %}
+
+        <div class="wrapper">
+          
+            <div class="form-box login">
+
+              {% comment %} <div class="login-container">
+                <img src="{% static 'dist/img/scholarbridge.jpg' %}" alt="Logo" class="logo">
+              </div> {% endcomment %}
+          
+                <h2>Sign In</h2>
+                <form action="{% url 'doLogin' %}" method="POST">
+
+                    {% csrf_token %}
+
+                    <div class="input-box">
+                        <span class="icon"><ion-icon name="person"></ion-icon></span>
+                        <label></label>
+                        <input type="email" id= "email" class="form-control" placeholder="Email" name="email" Required/>
+                        
+                    </div>
+                    <div class="input-box">
+                        <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                        <label></label>
+                        
+                        <input type="password" id="password" name="password" placeholder="Password"  Required/>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+
+                    {% if messages %}
+          <div class="col-12">
+            {% for message in messages %}
+              {% if message.tags == "error" %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                  {{ message }}
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+          {% endif %}
+
+                </form>
+
+            </div>
+        </div>
+        {% endblock %}
+
+    <script src="" async defer></script>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  </body>
+</html>

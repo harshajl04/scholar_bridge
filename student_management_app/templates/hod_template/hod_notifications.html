@@ -1,0 +1,17 @@
+<!-- hod_notifications.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HOD Notifications</title>
+</head>
+<body>
+    <h1>HOD Notifications</h1>
+    <ul>
+        {% for notification in notifications %}
+            <li>{{ notification.message }}</li>
+        {% empty %}
+            <li>No notifications.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
